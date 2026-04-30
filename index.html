@@ -13,14 +13,13 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Big+Shoulders+Display:wght@400;700;900&family=Vollkorn:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Big+Shoulders+Display:wght@400;700;900&family=Archivo:wght@400;500;700;900&family=Special+Elite&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "AutoBodyShop",
   "name": "Mr. Spot's Body & Paint",
-  "image": "https://mr-spots-body-and-paint.vercel.app/og.jpg",
   "telephone": "+1-909-620-0405",
   "email": "mrspotauto@gmail.com",
   "url": "https://mr-spots-body-and-paint.vercel.app",
@@ -47,19 +46,20 @@
 
 <style>
 :root {
-  --green-deep: #0f2e1f;
-  --green-mid: #1f4a36;
-  --green-bright: #3d7a55;
-  --ink: #0d0d0d;
-  --paper: #f3eee2;
-  --paper-deep: #e8e2d0;
-  --tag: #c9a13e;
-  --rule: rgba(13, 13, 13, 0.18);
-  --rule-light: rgba(243, 238, 226, 0.22);
+  --green: #4FB055;
+  --green-bright: #62c668;
+  --green-soft: #3a9442;
+  --ink: #0a0a0a;
+  --ink-soft: #161616;
+  --white: #ffffff;
+  --paper: #f6f3eb;
+  --rule-light: rgba(255, 255, 255, 0.18);
+  --rule-dark: rgba(10, 10, 10, 0.16);
 
-  --f-display: "UnifrakturMaguntia", serif;
-  --f-stamp: "Big Shoulders Display", "Arial Narrow", sans-serif;
-  --f-body: "Vollkorn", Georgia, serif;
+  --f-old: "UnifrakturMaguntia", serif;
+  --f-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --f-body: "Archivo", -apple-system, sans-serif;
+  --f-mono: "Special Elite", "Courier New", monospace;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -67,792 +67,705 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
   font-family: var(--f-body);
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  padding-top: 44px; /* room for fixed top bar */
 }
 
 a { color: inherit; text-decoration: none; }
-
-img { max-width: 100%; display: block; }
+img, svg { max-width: 100%; display: block; }
 
 /* ============================================================
-   MASTHEAD CREST (top of page — phone embedded, NOT top-right CTA)
+   FIXED TOP BAR — small, always visible, phone reachable
    ============================================================ */
-.masthead {
-  position: relative;
-  background: var(--green-deep);
-  color: var(--paper);
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 44px;
+  background: var(--ink);
   border-bottom: 1px solid var(--rule-light);
-}
-
-.masthead-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 28px 40px 22px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 32px;
-  align-items: center;
-}
-
-.masthead-meta {
-  font-family: var(--f-stamp);
-  font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.78;
+  z-index: 100;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.masthead-meta strong {
-  color: var(--tag);
-  font-weight: 700;
-}
-
-.masthead-wordmark {
-  font-family: var(--f-display);
-  font-size: clamp(34px, 4.6vw, 64px);
-  line-height: 1;
-  text-align: center;
-  letter-spacing: 0.01em;
-  color: var(--paper);
-  white-space: nowrap;
-}
-
-.masthead-phone {
-  text-align: right;
-  font-family: var(--f-stamp);
-  font-weight: 700;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  font-family: var(--f-mono);
   font-size: 11px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--white);
 }
 
-.masthead-phone a {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 12px;
-  color: var(--paper);
-  border-bottom: 1px solid var(--rule-light);
-  padding-bottom: 6px;
-  transition: border-color 0.4s, color 0.4s;
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.masthead-phone a:hover { color: var(--tag); border-color: var(--tag); }
-
-.masthead-phone .num {
-  font-family: var(--f-body);
-  font-style: italic;
-  font-size: 19px;
+.topbar-mark {
+  font-family: var(--f-old);
+  font-size: 22px;
+  color: var(--white);
+  line-height: 1;
   letter-spacing: 0;
   text-transform: none;
-  font-weight: 500;
 }
 
-.masthead-rule {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 40px 18px;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--f-stamp);
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--paper);
+.topbar-meta { opacity: 0.55; letter-spacing: 0.2em; }
+
+.topbar-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.topbar-phone .label {
   opacity: 0.55;
 }
 
+.topbar-phone .num {
+  color: var(--green);
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-shadow: 0 0 14px rgba(79, 176, 85, 0.6);
+  animation: neon 3.4s ease-in-out infinite;
+}
+
+@keyframes neon {
+  0%, 100% { text-shadow: 0 0 12px rgba(79, 176, 85, 0.45), 0 0 22px rgba(79, 176, 85, 0.25); }
+  50%      { text-shadow: 0 0 18px rgba(79, 176, 85, 0.85), 0 0 36px rgba(79, 176, 85, 0.45); }
+}
+
 /* ============================================================
-   HERO
+   HERO — THE BRUSH
    ============================================================ */
 .hero {
-  background: var(--green-deep);
-  color: var(--paper);
-  padding: 80px 40px 140px;
   position: relative;
+  min-height: calc(100vh - 44px);
+  background: var(--green);
+  color: var(--white);
   overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(61, 122, 85, 0.22), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(201, 161, 62, 0.08), transparent 70%);
-  pointer-events: none;
-}
-
-.hero-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 60px;
+  place-items: center;
+  cursor: none; /* hide cursor over hero — brush is the cursor */
+  isolation: isolate;
 }
 
-.hero-eyebrow {
-  font-family: var(--f-stamp);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--tag);
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 24px;
+  pointer-events: none; /* brush works over text */
 }
 
-.hero-eyebrow::before {
-  content: "";
-  width: 36px;
-  height: 1px;
-  background: var(--tag);
+.hero-mark {
+  font-family: var(--f-old);
+  font-size: clamp(96px, 22vw, 320px);
+  line-height: 0.85;
+  letter-spacing: -0.005em;
+  color: var(--white);
+  font-weight: 400;
 }
 
 .hero-drumbeat {
   font-family: var(--f-display);
-  font-size: clamp(64px, 13vw, 200px);
-  line-height: 0.95;
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 56px);
+  line-height: 1;
   letter-spacing: -0.005em;
-  color: var(--paper);
-  margin-top: 20px;
-  font-weight: 400;
-}
-
-.hero-drumbeat .ampersand {
-  color: var(--tag);
-}
-
-.hero-sub-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: end;
-  margin-top: 80px;
-}
-
-.hero-sub {
-  font-family: var(--f-body);
-  font-size: clamp(18px, 1.5vw, 22px);
-  line-height: 1.5;
-  max-width: 520px;
-  color: var(--paper);
-  opacity: 0.92;
-}
-
-.hero-sub em {
-  color: var(--tag);
-  font-style: normal;
-  font-weight: 700;
-}
-
-.hero-credit {
-  font-family: var(--f-stamp);
-  font-size: 11px;
-  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.68;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  color: var(--ink);
+  margin-top: 24px;
 }
 
-.hero-credit strong {
-  color: var(--paper);
-  opacity: 1;
-  font-weight: 700;
-}
-
-/* ============================================================
-   THE THREE CARS — signature pinned plate sequence
-   ============================================================ */
-.cars {
-  background: var(--paper);
-  position: relative;
-  border-top: 1px solid var(--rule);
-}
-
-.cars-label {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 32px 40px 0;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--f-stamp);
-  font-size: 11px;
+.hero-meta {
+  font-family: var(--f-mono);
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--ink);
-  opacity: 0.6;
+  margin-top: 28px;
+  opacity: 0.75;
 }
 
-.cars-section-title {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 28px 40px 0;
-  font-family: var(--f-stamp);
-  font-weight: 900;
-  font-size: clamp(48px, 7vw, 96px);
-  line-height: 0.92;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.cars-section-title em {
-  font-family: var(--f-body);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 0.6em;
-  color: var(--green-deep);
-  display: block;
-  letter-spacing: 0;
-  text-transform: none;
-  margin-top: 8px;
-}
-
-.cars-track {
-  position: relative;
-  margin-top: 60px;
-}
-
-.car-plate {
-  border-top: 1px solid var(--rule);
-  padding: 80px 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  max-width: 1440px;
-  margin: 0 auto;
-  position: relative;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-}
-
-.car-plate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.car-plate:last-child { border-bottom: 1px solid var(--rule); }
-
-.car-year {
-  font-family: var(--f-display);
-  font-size: clamp(120px, 22vw, 320px);
-  line-height: 0.85;
-  color: var(--green-deep);
-  letter-spacing: -0.01em;
-  font-weight: 400;
-}
-
-.car-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 12px 0;
-  border-left: 1px solid var(--rule);
-  padding-left: 40px;
-}
-
-.car-tag {
-  font-family: var(--f-stamp);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--tag);
-}
-
-.car-name {
-  font-family: var(--f-stamp);
-  font-weight: 900;
-  font-size: clamp(32px, 3.2vw, 48px);
-  line-height: 1.05;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-.car-restorer {
-  font-family: var(--f-body);
-  font-size: 17px;
-  font-style: italic;
-  color: var(--green-deep);
-}
-
-.car-thread {
-  font-family: var(--f-body);
-  font-size: 19px;
-  line-height: 1.45;
-  color: var(--ink);
-  font-weight: 500;
-  border-top: 1px solid var(--rule);
-  padding-top: 18px;
-  margin-top: 6px;
-  max-width: 38ch;
-}
-
-/* alternate plate orientation */
-.car-plate:nth-child(even) {
-  grid-template-columns: 1fr 1fr;
-  direction: rtl;
-}
-
-.car-plate:nth-child(even) > * { direction: ltr; }
-
-.car-plate:nth-child(even) .car-detail {
-  border-left: none;
-  border-right: 1px solid var(--rule);
-  padding-left: 0;
-  padding-right: 40px;
-  text-align: right;
-}
-
-.car-plate:nth-child(even) .car-thread {
-  margin-left: auto;
-}
-
-/* ============================================================
-   WHAT WE RESTORE — service plates (no descriptions)
-   ============================================================ */
-.services {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 100px 40px;
-  border-top: 1px solid var(--ink);
-}
-
-.services-inner { max-width: 1440px; margin: 0 auto; }
-
-.services-label {
-  font-family: var(--f-stamp);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--tag);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.services-label::before {
-  content: "";
-  width: 36px;
-  height: 1px;
-  background: var(--tag);
-}
-
-.services-title {
-  font-family: var(--f-stamp);
-  font-weight: 900;
-  font-size: clamp(40px, 6vw, 84px);
-  line-height: 0.95;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  color: var(--paper);
-  margin-top: 22px;
-  max-width: 16ch;
-}
-
-.services-list {
-  margin-top: 72px;
-  border-top: 1px solid var(--rule-light);
-}
-
-.service-row {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  align-items: baseline;
-  gap: 40px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--rule-light);
-  position: relative;
-  cursor: default;
-  transition: background 0.5s, padding 0.5s;
-}
-
-.service-row:hover {
-  padding-left: 24px;
-  padding-right: 24px;
-  background: rgba(243, 238, 226, 0.04);
-}
-
-.service-num {
-  font-family: var(--f-stamp);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.2em;
-  color: var(--tag);
-}
-
-.service-name {
-  font-family: var(--f-stamp);
-  font-weight: 900;
-  font-size: clamp(26px, 2.8vw, 40px);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  color: var(--paper);
-  position: relative;
-  display: inline-block;
-}
-
-.service-name::after {
-  content: "";
+.brush-canvas {
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--tag);
-  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: block;
+  cursor: none;
+  touch-action: none;
 }
 
-.service-row:hover .service-name::after { width: 100%; }
-
-.service-band {
-  font-family: var(--f-body);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--paper);
-  opacity: 0.6;
-  text-align: right;
+.brush-prompt {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
   white-space: nowrap;
 }
 
+.brush-prompt::before {
+  content: "—";
+  margin-right: 10px;
+  opacity: 0.6;
+}
+
+.brush-prompt.is-faded { opacity: 0; }
+
+/* the painted-cursor dot */
+.brush-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 24px; height: 24px;
+  border: 1.5px solid var(--white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 200;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  display: none;
+  transition: width 0.15s, height 0.15s;
+}
+
+.brush-cursor.is-active { display: block; }
+
 /* ============================================================
-   STAFF — one sentence
+   MARQUEE — THE PARADE
    ============================================================ */
-.staff {
-  background: var(--paper);
-  padding: 140px 40px 120px;
-  border-top: 1px solid var(--rule);
+.parade {
+  background: var(--ink);
+  border-top: 1px solid var(--rule-light);
+  border-bottom: 1px solid var(--rule-light);
+  overflow: hidden;
+  position: relative;
 }
 
-.staff-inner {
-  max-width: 1100px;
+.parade-meta {
+  max-width: 1440px;
   margin: 0 auto;
-}
-
-.staff-label {
-  font-family: var(--f-stamp);
-  font-weight: 700;
+  padding: 32px 28px 12px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--green-deep);
+  color: var(--white);
+  opacity: 0.6;
+}
+
+.parade-track {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  gap: 64px;
+  padding: 32px 0 48px;
+  width: max-content;
+  animation: parade 38s linear infinite;
+  white-space: nowrap;
 }
 
-.staff-label::before {
-  content: "";
-  width: 36px;
-  height: 1px;
-  background: var(--green-deep);
-}
+.parade:hover .parade-track { animation-play-state: paused; }
 
-.staff-line {
-  font-family: var(--f-body);
-  font-weight: 400;
-  font-size: clamp(28px, 4vw, 56px);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  margin-top: 28px;
-}
-
-.staff-line .name {
-  font-family: var(--f-stamp);
+.parade-item {
+  font-family: var(--f-display);
   font-weight: 900;
+  font-size: clamp(64px, 11vw, 168px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--green);
   text-transform: uppercase;
-  letter-spacing: -0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: 64px;
 }
 
-.staff-line .name.rod    { color: var(--ink); }
-.staff-line .name.karess { color: var(--green-deep); }
-.staff-line .name.tanner { color: var(--tag); }
+.parade-item::after {
+  content: "·";
+  color: var(--white);
+  opacity: 0.4;
+  font-weight: 400;
+}
 
-.staff-line em {
-  font-style: italic;
-  color: var(--green-deep);
+.parade-item.is-tag {
+  font-family: var(--f-mono);
+  font-weight: 400;
+  font-size: clamp(24px, 4vw, 56px);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@keyframes parade {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ============================================================
-   VISIT — drop the car off
+   DRAG — BEFORE / AFTER
+   ============================================================ */
+.drag {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 80px 28px 100px;
+  position: relative;
+  border-top: 1px solid var(--rule-dark);
+}
+
+.drag-eyebrow {
+  max-width: 1280px;
+  margin: 0 auto 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.62;
+}
+
+.drag-stage {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  height: clamp(280px, 44vw, 520px);
+  background: var(--white);
+  border: 1px solid var(--rule-dark);
+  overflow: hidden;
+  user-select: none;
+  cursor: ew-resize;
+}
+
+.drag-layer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(72px, 14vw, 220px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.drag-before {
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(10, 10, 10, 0.04) 0 6px,
+      transparent 6px 14px),
+    var(--paper);
+  color: rgba(10, 10, 10, 0.42);
+  filter: contrast(0.92) saturate(0.4);
+}
+
+.drag-before .num { display: block; }
+.drag-before .num::after {
+  content: "";
+  display: block;
+  width: 0.7em;
+  height: 0.04em;
+  margin: 0.06em auto 0;
+  background: rgba(10, 10, 10, 0.3);
+}
+
+.drag-after {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(255, 255, 255, 0.55), transparent 70%),
+    var(--green);
+  color: var(--white);
+  clip-path: inset(0 0 0 var(--split, 50%));
+  transition: clip-path 0.05s linear;
+}
+
+.drag-after .num {
+  display: block;
+  text-shadow: 0 6px 28px rgba(10, 10, 10, 0.25);
+}
+
+.drag-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--split, 50%);
+  width: 2px;
+  background: var(--ink);
+  transform: translateX(-1px);
+  z-index: 5;
+}
+
+.drag-handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  background: var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.drag-handle::after {
+  content: "↔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--green);
+  letter-spacing: 0;
+}
+
+.drag-caption {
+  max-width: 1280px;
+  margin: 28px auto 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.drag-caption .code { font-weight: 700; }
+.drag-caption .stages { opacity: 0.6; }
+
+/* ============================================================
+   FAMILY — WES ANDERSON TABLEAU
+   ============================================================ */
+.family {
+  background: var(--paper);
+  padding: 110px 28px 140px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.family::before, .family::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: clamp(280px, 60vw, 720px);
+  height: 1px;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.family::before { top: 60px; }
+.family::after  { bottom: 60px; }
+
+.family-card {
+  text-align: center;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 56px clamp(32px, 6vw, 80px);
+  max-width: 880px;
+  position: relative;
+}
+
+.family-card::before, .family-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: calc(100% - 16px);
+  height: 1px;
+  background: var(--ink);
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+
+.family-card::before { top: 6px; }
+.family-card::after  { bottom: 6px; }
+
+.family-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.7;
+  margin-bottom: 32px;
+}
+
+.family-names {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(12px, 3vw, 36px);
+  margin-bottom: 36px;
+}
+
+.family-name {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.family-dot {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 84px);
+  color: var(--green);
+  line-height: 0.95;
+}
+
+.family-roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(12px, 3vw, 36px);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.78;
+}
+
+.family-roles span { padding-top: 14px; border-top: 1px solid rgba(10,10,10,0.18); }
+
+.family-sign {
+  margin-top: 44px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.family-sign em { font-style: italic; opacity: 0.72; }
+
+/* ============================================================
+   VISIT — drop the car off + glowing phone
    ============================================================ */
 .visit {
-  background: var(--green-deep);
-  color: var(--paper);
-  padding: 100px 40px 120px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 110px 28px 90px;
   position: relative;
+  overflow: hidden;
 }
 
 .visit::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(61, 122, 85, 0.22), transparent 70%);
+  background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(79, 176, 85, 0.18), transparent 70%);
   pointer-events: none;
 }
 
 .visit-inner {
-  max-width: 1440px;
+  max-width: 1280px;
   margin: 0 auto;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: 80px;
-  align-items: end;
+  align-items: center;
+}
+
+.visit-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 24px;
 }
 
 .visit-headline {
   font-family: var(--f-display);
-  font-size: clamp(56px, 9vw, 140px);
-  line-height: 0.95;
-  letter-spacing: -0.005em;
-  color: var(--paper);
-  font-weight: 400;
+  font-weight: 900;
+  font-size: clamp(56px, 9vw, 144px);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: var(--white);
 }
 
-.visit-info {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  font-family: var(--f-body);
-  font-size: 18px;
+.visit-headline .green-the {
+  color: var(--green);
 }
 
 .visit-info dl {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 110px 1fr;
   row-gap: 14px;
   border-top: 1px solid var(--rule-light);
   border-bottom: 1px solid var(--rule-light);
   padding: 22px 0;
+  margin-bottom: 28px;
+  font-family: var(--f-body);
+  font-size: 17px;
 }
 
 .visit-info dt {
-  font-family: var(--f-stamp);
-  font-weight: 700;
+  font-family: var(--f-mono);
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--tag);
+  color: var(--green);
   align-self: center;
 }
 
-.visit-info dd {
-  color: var(--paper);
-  align-self: center;
-}
+.visit-info dd { color: var(--white); align-self: center; }
 
-.visit-cta {
+.visit-call {
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 4px;
-  padding: 20px 28px;
-  background: var(--paper);
-  color: var(--ink);
   text-decoration: none;
-  border: none;
-  align-self: flex-start;
-  transition: background 0.4s, color 0.4s, transform 0.4s;
+  border: 2px solid var(--green);
+  padding: 18px 28px;
+  background: transparent;
+  transition: background 0.4s, transform 0.4s;
 }
 
-.visit-cta:hover {
-  background: var(--tag);
-  color: var(--ink);
+.visit-call:hover {
+  background: var(--green);
   transform: translateY(-2px);
 }
 
-.visit-cta-label {
-  font-family: var(--f-stamp);
-  font-weight: 700;
+.visit-call-label {
+  font-family: var(--f-mono);
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--green-deep);
+  color: var(--white);
+  opacity: 0.75;
 }
 
-.visit-cta:hover .visit-cta-label { color: var(--ink); }
+.visit-call:hover .visit-call-label { color: var(--ink); opacity: 0.85; }
 
-.visit-cta-num {
-  font-family: var(--f-body);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 1;
+.visit-call-num {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(28px, 3.4vw, 44px);
+  letter-spacing: 0.02em;
+  color: var(--green);
+  text-shadow: 0 0 18px rgba(79, 176, 85, 0.55);
+  animation: neon 3.4s ease-in-out infinite;
 }
 
-.visit-note {
-  font-family: var(--f-body);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--paper);
-  opacity: 0.78;
+.visit-call:hover .visit-call-num { color: var(--ink); text-shadow: none; animation: none; }
+
+.visit-sign {
+  margin-top: 28px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  opacity: 0.7;
 }
+
+.visit-sign em { font-style: italic; }
 
 /* ============================================================
    FOOTER
    ============================================================ */
 .foot {
   background: var(--ink);
-  color: var(--paper);
-  padding: 64px 40px 32px;
+  color: var(--white);
+  border-top: 1px solid var(--rule-light);
+  padding: 36px 28px 28px;
 }
 
 .foot-inner {
   max-width: 1440px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 40px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-}
-
-.foot-wordmark {
-  font-family: var(--f-display);
-  font-size: clamp(32px, 4vw, 56px);
-  line-height: 1;
-  color: var(--paper);
-  opacity: 0.95;
-  font-weight: 400;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .foot-mark {
-  font-family: var(--f-stamp);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--tag);
-  text-align: center;
+  font-family: var(--f-old);
+  font-size: 28px;
+  color: var(--white);
+  line-height: 1;
 }
 
 .foot-meta {
-  font-family: var(--f-stamp);
+  font-family: var(--f-mono);
   font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--paper);
   opacity: 0.55;
-  text-align: right;
-}
-
-.foot-rule {
-  border-top: 1px solid var(--rule-light);
-  margin: 32px auto 0;
-  max-width: 1440px;
-  padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--f-stamp);
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--paper);
-  opacity: 0.45;
-}
-
-/* ============================================================
-   STICKY MOBILE PHONE BAR
-   ============================================================ */
-.mobile-call {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--green-deep);
-  color: var(--paper);
-  padding: 14px 20px;
-  border-top: 1px solid var(--rule-light);
-  z-index: 50;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--f-stamp);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-
-.mobile-call .num {
-  font-family: var(--f-body);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--tag);
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
-  .masthead-inner { grid-template-columns: 1fr; gap: 14px; padding: 22px 22px 16px; text-align: center; }
-  .masthead-meta, .masthead-phone { text-align: center; align-items: center; justify-content: center; display: flex; flex-direction: column; }
-  .masthead-phone a { justify-content: center; }
-  .masthead-rule { padding: 0 22px 14px; flex-direction: column; gap: 6px; align-items: center; }
+  body { padding-top: 40px; }
+  .topbar { height: 40px; padding: 0 16px; font-size: 10px; }
+  .topbar-meta { display: none; }
+  .topbar-mark { font-size: 18px; }
+  .topbar-phone .label { display: none; }
+  .topbar-phone .num { font-size: 14px; }
 
-  .hero { padding: 56px 22px 80px; }
-  .hero-sub-row { grid-template-columns: 1fr; gap: 32px; margin-top: 48px; }
-  .hero-credit { text-align: left; }
+  .hero-mark { font-size: clamp(72px, 26vw, 220px); }
+  .hero-drumbeat { font-size: clamp(22px, 6vw, 36px); margin-top: 16px; }
+  .hero-meta { font-size: 10px; }
+  .brush-prompt { font-size: 10px; bottom: 20px; }
 
-  .cars-label, .cars-section-title { padding-left: 22px; padding-right: 22px; }
-  .car-plate { grid-template-columns: 1fr; gap: 28px; padding: 60px 22px; }
-  .car-plate:nth-child(even) { direction: ltr; }
-  .car-plate:nth-child(even) .car-detail {
-    border-right: none;
-    border-left: 1px solid var(--rule);
-    padding-left: 22px;
-    padding-right: 0;
-    text-align: left;
+  .parade-meta { padding: 22px 16px 8px; }
+  .parade-track { gap: 36px; padding: 22px 0 30px; }
+  .parade-item { gap: 36px; }
+
+  .drag { padding: 60px 16px 80px; }
+  .drag-eyebrow { padding: 0 4px; flex-direction: column; gap: 4px; }
+  .drag-stage { height: clamp(220px, 56vw, 360px); }
+  .drag-handle::before { width: 44px; height: 44px; }
+  .drag-caption { padding: 0 4px; flex-direction: column; gap: 8px; font-size: 11px; }
+
+  .family { padding: 70px 16px 90px; }
+  .family-card { padding: 36px 22px; }
+  .family-names {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
-  .car-plate:nth-child(even) .car-thread { margin-left: 0; }
-  .car-detail { border-left: 1px solid var(--rule); padding-left: 22px; }
-  .car-year { font-size: clamp(96px, 30vw, 160px); }
+  .family-dot { display: none; }
+  .family-roles { grid-template-columns: 1fr; gap: 8px; }
+  .family-roles span { padding-top: 8px; }
 
-  .services { padding: 72px 22px 110px; }
-  .service-row { grid-template-columns: 50px 1fr; gap: 18px; padding: 22px 0; }
-  .service-row:hover { padding-left: 0; padding-right: 0; }
-  .service-band { grid-column: 1 / -1; padding-left: 68px; text-align: left; }
+  .visit { padding: 70px 16px 70px; }
+  .visit-inner { grid-template-columns: 1fr; gap: 32px; }
+  .visit-headline { font-size: clamp(48px, 14vw, 88px); }
 
-  .staff { padding: 80px 22px 80px; }
-  .staff-line { font-size: clamp(22px, 6vw, 36px); }
-
-  .visit { padding: 72px 22px 130px; }
-  .visit-inner { grid-template-columns: 1fr; gap: 40px; }
-  .visit-cta { width: 100%; }
-
-  .foot-inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
-  .foot-meta, .foot-mark { text-align: center; }
-  .foot-rule { flex-direction: column; gap: 6px; align-items: center; padding: 20px 22px 0; }
-
-  .mobile-call { display: flex; }
-  body { padding-bottom: 56px; }
+  .foot-inner { justify-content: center; text-align: center; }
 }
 
 /* ============================================================
@@ -865,7 +778,17 @@ img { max-width: 100%; display: block; }
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
-  .car-plate { opacity: 1; transform: none; }
+  .parade-track { animation: none; transform: translateX(0); flex-wrap: wrap; gap: 24px; padding: 24px 16px; width: auto; }
+  .topbar-phone .num, .visit-call-num { text-shadow: 0 0 8px rgba(79, 176, 85, 0.4); }
+  .hero { cursor: default; }
+  .brush-canvas { display: none; }
+  .brush-prompt { display: none; }
+  .brush-cursor { display: none !important; }
+}
+
+@media (hover: none) {
+  .hero { cursor: default; }
+  .brush-cursor { display: none !important; }
 }
 </style>
 </head>
@@ -873,168 +796,143 @@ img { max-width: 100%; display: block; }
 <body>
 
 <!-- ============================================================
-     MASTHEAD CREST
+     FIXED TOP BAR
      ============================================================ -->
-<header class="masthead">
-  <div class="masthead-inner">
-    <div class="masthead-meta">
-      <span><strong>Est.</strong> 1981</span>
-      <span>575 S East End · Pomona</span>
-    </div>
-    <div class="masthead-wordmark">Mr&nbsp;Spots</div>
-    <div class="masthead-phone">
-      <a href="tel:+19096200405">
-        <span>Call</span>
-        <span class="num">(909) 620-0405</span>
-      </a>
-    </div>
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-mark">Mr&nbsp;Spots</span>
+    <span class="topbar-meta">Body &amp; Paint · Pomona · Est 1981</span>
   </div>
-  <div class="masthead-rule">
-    <span>Body &amp; Paint</span>
-    <span>Mon–Fri · 9 to 5</span>
-    <span>Pomona, California</span>
-  </div>
+  <a class="topbar-phone" href="tel:+19096200405">
+    <span class="label">Call</span>
+    <span class="num">(909) 620-0405</span>
+  </a>
 </header>
+
+<!-- the painted brush cursor -->
+<div class="brush-cursor" id="brushCursor"></div>
 
 <main>
 
   <!-- ============================================================
-       HERO
+       HERO — THE BRUSH
        ============================================================ -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">A Pomona body shop · 45th year</div>
-      <h1 class="hero-drumbeat">
-        Painted<br>
-        by Gallaghers<span class="ampersand">.</span>
-      </h1>
-      <div class="hero-sub-row">
-        <p class="hero-sub">
-          Forty-five years of vintage VWs, fifties American iron, and the
-          kind of paint work you only get when <em>the same family</em>
-          has been mixing color since 1981.
-        </p>
-        <div class="hero-credit">
-          <span>Rod · Karess · Tanner</span>
-          <strong>The whole staff.</strong>
-        </div>
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-mark">Mr&nbsp;Spots</h1>
+      <p class="hero-drumbeat">Painted by Gallaghers.</p>
+      <p class="hero-meta">Body &amp; Paint · Pomona · since 1981</p>
+    </div>
+    <canvas class="brush-canvas" id="brushCanvas"></canvas>
+    <p class="brush-prompt" id="brushPrompt">Brush this page</p>
+  </section>
+
+  <!-- ============================================================
+       PARADE — what's come through these doors
+       ============================================================ -->
+  <section class="parade" aria-label="Cars and services we restore">
+    <div class="parade-meta">
+      <span>The Parade</span>
+      <span>Forty-five years on East End</span>
+    </div>
+    <div class="parade-track" id="paradeTrack">
+      <span class="parade-item">1956 VW Bug</span>
+      <span class="parade-item is-tag">Custom paint</span>
+      <span class="parade-item">1972 VW Bus</span>
+      <span class="parade-item is-tag">Color-matched</span>
+      <span class="parade-item">1950 Mercury</span>
+      <span class="parade-item is-tag">Frame repair</span>
+      <span class="parade-item">1962 Notchback</span>
+      <span class="parade-item is-tag">Collision</span>
+      <span class="parade-item">1955 Panel Van</span>
+      <span class="parade-item is-tag">Insurance-approved</span>
+      <span class="parade-item">1971 Squareback</span>
+      <span class="parade-item is-tag">Vintage glass</span>
+      <!-- duplicated for seamless loop -->
+      <span class="parade-item">1956 VW Bug</span>
+      <span class="parade-item is-tag">Custom paint</span>
+      <span class="parade-item">1972 VW Bus</span>
+      <span class="parade-item is-tag">Color-matched</span>
+      <span class="parade-item">1950 Mercury</span>
+      <span class="parade-item is-tag">Frame repair</span>
+      <span class="parade-item">1962 Notchback</span>
+      <span class="parade-item is-tag">Collision</span>
+      <span class="parade-item">1955 Panel Van</span>
+      <span class="parade-item is-tag">Insurance-approved</span>
+      <span class="parade-item">1971 Squareback</span>
+      <span class="parade-item is-tag">Vintage glass</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DRAG — BEFORE / AFTER
+       ============================================================ -->
+  <section class="drag" id="drag" aria-label="Before and after — drag to wipe">
+    <div class="drag-eyebrow">
+      <span>Drag to wipe</span>
+      <span>Bahama Pastel · 1972</span>
+    </div>
+    <div class="drag-stage" id="dragStage" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <div class="drag-layer drag-before" aria-hidden="true">
+        <span class="num">1972<br>VW BUS</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       THE THREE CARS — signature pinned plate sequence
-       ============================================================ -->
-  <section class="cars" id="three-cars">
-    <div class="cars-label">
-      <span>The Three Cars</span>
-      <span>I · II · III</span>
-    </div>
-    <h2 class="cars-section-title">
-      Three cars,<br>three eras —
-      <em>the lineage you can prove.</em>
-    </h2>
-
-    <div class="cars-track">
-
-      <article class="car-plate">
-        <div class="car-year">1950</div>
-        <div class="car-detail">
-          <span class="car-tag">Plate I · The Father</span>
-          <h3 class="car-name">A Mercury,<br>in his dad's driveway.</h3>
-          <p class="car-restorer">Restored by Rod's father.</p>
-          <p class="car-thread">Where the eye started. Rod was nine, holding a sanding block.</p>
-        </div>
-      </article>
-
-      <article class="car-plate">
-        <div class="car-year">1956</div>
-        <div class="car-detail">
-          <span class="car-tag">Plate II · The First One</span>
-          <h3 class="car-name">An oval-window<br>VW Bug.</h3>
-          <p class="car-restorer">Restored by Rod, age fourteen.</p>
-          <p class="car-thread">Where the hands started. The shop opened in '81.</p>
-        </div>
-      </article>
-
-      <article class="car-plate">
-        <div class="car-year">1972</div>
-        <div class="car-detail">
-          <span class="car-tag">Plate III · The Next One</span>
-          <h3 class="car-name">A VW Bus —<br>still in the booth.</h3>
-          <p class="car-restorer">Started by Tanner, 7th grade.</p>
-          <p class="car-thread">Where it goes from here. He's sixteen now and still on it.</p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WHAT WE RESTORE
-       ============================================================ -->
-  <section class="services">
-    <div class="services-inner">
-      <div class="services-label">What we restore</div>
-      <h2 class="services-title">Vintage glass.<br>Modern collision.<br>Color we mix ourselves.</h2>
-
-      <div class="services-list">
-        <div class="service-row">
-          <span class="service-num">01</span>
-          <span class="service-name">Vintage VWs</span>
-          <span class="service-band">Bugs · Buses · 1950–1979</span>
-        </div>
-        <div class="service-row">
-          <span class="service-num">02</span>
-          <span class="service-name">Fifties American iron</span>
-          <span class="service-band">Mercurys · Chevys · Fords</span>
-        </div>
-        <div class="service-row">
-          <span class="service-num">03</span>
-          <span class="service-name">Custom paint</span>
-          <span class="service-band">Color-matched · any year</span>
-        </div>
-        <div class="service-row">
-          <span class="service-num">04</span>
-          <span class="service-name">Collision &amp; frame</span>
-          <span class="service-band">Insurance-approved</span>
-        </div>
+      <div class="drag-layer drag-after" id="dragAfter" aria-hidden="true">
+        <span class="num">1972<br>VW BUS</span>
       </div>
+      <div class="drag-handle" id="dragHandle"></div>
+    </div>
+    <div class="drag-caption">
+      <span class="code">Color: 1972 Bahama Pastel · matched, mixed, sprayed.</span>
+      <span class="stages">Masked · primed · color-coat · clear-coat · cut &amp; buffed</span>
     </div>
   </section>
 
   <!-- ============================================================
-       STAFF — one sentence
+       FAMILY — symmetric tableau
        ============================================================ -->
-  <section class="staff">
-    <div class="staff-inner">
-      <div class="staff-label">Who's in the shop</div>
-      <p class="staff-line">
-        <span class="name rod">Rod</span>, his daughter <span class="name karess">Karess</span>,
-        his son <span class="name tanner">Tanner</span>. <em>That's the staff.</em>
-      </p>
+  <section class="family" aria-label="Who's in the shop">
+    <div class="family-card">
+      <p class="family-eyebrow">Who's in the shop</p>
+      <div class="family-names">
+        <span class="family-name">Rod</span>
+        <span class="family-dot">·</span>
+        <span class="family-name">Karess</span>
+        <span class="family-dot">·</span>
+        <span class="family-name">Tanner</span>
+      </div>
+      <div class="family-roles">
+        <span>Founder · since '81</span>
+        <span>Manager · daughter</span>
+        <span>Body specialist · age 16</span>
+      </div>
+      <p class="family-sign">— <em>that's the staff.</em></p>
     </div>
   </section>
 
   <!-- ============================================================
-       VISIT
+       VISIT — neon phone close
        ============================================================ -->
   <section class="visit" id="visit">
     <div class="visit-inner">
       <div>
-        <h2 class="visit-headline">Drop<br>the car<br>off.</h2>
+        <p class="visit-eyebrow">Drop the car off</p>
+        <h2 class="visit-headline">
+          Call before<br>
+          you tow.<br>
+          <span class="green-the">We'll be here.</span>
+        </h2>
       </div>
       <div class="visit-info">
         <dl>
-          <dt>Address</dt><dd>575 S East End Ave, Pomona, CA 91766</dd>
-          <dt>Hours</dt><dd>Mon–Fri · 9 to 5 · closed weekends</dd>
+          <dt>Where</dt><dd>575 S East End Ave, Pomona, CA 91766</dd>
+          <dt>When</dt><dd>Mon–Fri · 9 to 5 · closed weekends</dd>
           <dt>Email</dt><dd>mrspotauto@gmail.com</dd>
         </dl>
-        <a class="visit-cta" href="tel:+19096200405">
-          <span class="visit-cta-label">Call before you tow</span>
-          <span class="visit-cta-num">(909) 620-0405</span>
+        <a class="visit-call" href="tel:+19096200405">
+          <span class="visit-call-label">Tap to call the shop</span>
+          <span class="visit-call-num">(909) 620-0405</span>
         </a>
-        <p class="visit-note">We take vintage seriously. We answer the phone ourselves.</p>
+        <p class="visit-sign">— Rod, <em>he answers it himself.</em></p>
       </div>
     </div>
   </section>
@@ -1046,45 +944,199 @@ img { max-width: 100%; display: block; }
      ============================================================ -->
 <footer class="foot">
   <div class="foot-inner">
-    <div class="foot-wordmark">Mr&nbsp;Spots</div>
-    <div class="foot-mark">Painted by Gallaghers · since 1981</div>
-    <div class="foot-meta">
-      Pomona, CA<br>
-      (909) 620-0405
-    </div>
-  </div>
-  <div class="foot-rule">
-    <span>© Mr. Spot's Body &amp; Paint</span>
-    <span>Body shop · paint shop · restoration</span>
+    <span class="foot-mark">Mr&nbsp;Spots</span>
+    <span class="foot-meta">Painted by Gallaghers · Pomona · since 1981</span>
+    <span class="foot-meta">© Mr. Spot's Body &amp; Paint</span>
   </div>
 </footer>
 
-<!-- sticky mobile phone bar -->
-<a class="mobile-call" href="tel:+19096200405">
-  <span>Call the shop</span>
-  <span class="num">(909) 620-0405</span>
-</a>
-
 <script>
 (function () {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.car-plate').forEach(function (el) { el.classList.add('is-visible'); });
-    return;
-  }
-  var plates = document.querySelectorAll('.car-plate');
-  if (!('IntersectionObserver' in window)) {
-    plates.forEach(function (el) { el.classList.add('is-visible'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+
+  /* ============================================================
+     THE BRUSH — canvas wipe revealing the green hero underneath
+     ============================================================ */
+  (function () {
+    var canvas = document.getElementById('brushCanvas');
+    var prompt = document.getElementById('brushPrompt');
+    var cursor = document.getElementById('brushCursor');
+    var hero = document.getElementById('hero');
+    if (!canvas || !hero) return;
+
+    if (prefersReduced) {
+      canvas.style.display = 'none';
+      if (prompt) prompt.style.display = 'none';
+      return;
+    }
+
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0;
+    var firstStroke = false;
+    var lastMove = Date.now();
+    var faded = false;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // fill with solid black undercoat
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function paintAt(x, y) {
+      ctx.globalCompositeOperation = 'destination-out';
+      var r = 70;
+      var grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+      grad.addColorStop(0,   'rgba(0,0,0,1)');
+      grad.addColorStop(0.6, 'rgba(0,0,0,0.85)');
+      grad.addColorStop(1,   'rgba(0,0,0,0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function fadeOut() {
+      if (faded) return;
+      faded = true;
+      canvas.style.transition = 'opacity 900ms ease';
+      canvas.style.opacity = '0';
+      if (cursor) cursor.classList.remove('is-active');
+      hero.style.cursor = 'default';
+    }
+
+    function onMove(e) {
+      var rect = canvas.getBoundingClientRect();
+      var pt = e.touches ? e.touches[0] : e;
+      var x = pt.clientX - rect.left;
+      var y = pt.clientY - rect.top;
+      paintAt(x, y);
+      // also paint a smoothing point if we have a previous position
+      lastMove = Date.now();
+      if (!firstStroke) {
+        firstStroke = true;
+        if (prompt) prompt.classList.add('is-faded');
       }
+      if (cursor && hasHover) {
+        cursor.classList.add('is-active');
+        cursor.style.transform = 'translate(' + (pt.clientX) + 'px, ' + (pt.clientY) + 'px) translate(-50%, -50%)';
+      }
+    }
+
+    function onLeave() {
+      if (cursor) cursor.classList.remove('is-active');
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('touchmove', function (e) { e.preventDefault(); onMove(e); }, { passive: false });
+    canvas.addEventListener('mouseleave', onLeave);
+    canvas.addEventListener('touchend', onLeave);
+
+    // auto-finish after 3s of inactivity following first stroke,
+    // or after 8s total if user never touches
+    setInterval(function () {
+      if (faded) return;
+      var now = Date.now();
+      if (firstStroke && now - lastMove > 2200) fadeOut();
+      else if (!firstStroke && now - lastMove > 7500) fadeOut();
+    }, 400);
+
+    // also fade once enough has been wiped
+    setInterval(function () {
+      if (faded || !firstStroke) return;
+      // sample the alpha across a small grid
+      try {
+        var sample = ctx.getImageData(0, 0, w * dpr, h * dpr);
+        var len = sample.data.length;
+        var step = Math.max(4 * 1000, Math.floor(len / 1200) * 4); // ~1200 sample points
+        var clear = 0, total = 0;
+        for (var i = 3; i < len; i += step) {
+          total++;
+          if (sample.data[i] < 30) clear++;
+        }
+        if (total && clear / total > 0.55) fadeOut();
+      } catch (err) { /* ignore — cross-origin etc. */ }
+    }, 700);
+  })();
+
+  /* ============================================================
+     DRAG — BEFORE/AFTER slider
+     ============================================================ */
+  (function () {
+    var stage = document.getElementById('dragStage');
+    var after = document.getElementById('dragAfter');
+    var handle = document.getElementById('dragHandle');
+    if (!stage || !after || !handle) return;
+
+    var dragging = false;
+
+    function setSplit(pct) {
+      pct = Math.max(0, Math.min(100, pct));
+      stage.style.setProperty('--split', pct + '%');
+      stage.setAttribute('aria-valuenow', String(Math.round(pct)));
+    }
+
+    function fromEvent(e) {
+      var rect = stage.getBoundingClientRect();
+      var pt = e.touches ? e.touches[0] : e;
+      var x = pt.clientX - rect.left;
+      return (x / rect.width) * 100;
+    }
+
+    function start(e) { dragging = true; setSplit(fromEvent(e)); }
+    function move(e) { if (dragging) { setSplit(fromEvent(e)); e.preventDefault && e.preventDefault(); } }
+    function end() { dragging = false; }
+
+    stage.addEventListener('mousedown', start);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    stage.addEventListener('touchstart', start, { passive: true });
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('touchend', end);
+
+    stage.addEventListener('keydown', function (e) {
+      var current = parseFloat(stage.style.getPropertyValue('--split')) || 50;
+      if (e.key === 'ArrowLeft') setSplit(current - 5);
+      if (e.key === 'ArrowRight') setSplit(current + 5);
     });
-  }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
-  plates.forEach(function (el) { io.observe(el); });
+
+    // gentle entrance animation — slide from 100 to 50 once visible
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var start = 100;
+          var target = 50;
+          var t0 = performance.now();
+          var dur = 1100;
+          function step(t) {
+            var p = Math.min(1, (t - t0) / dur);
+            var eased = 1 - Math.pow(1 - p, 3);
+            setSplit(start + (target - start) * eased);
+            if (p < 1) requestAnimationFrame(step);
+          }
+          if (!prefersReduced) requestAnimationFrame(step);
+          else setSplit(50);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 }) : null;
+
+    if (io) { setSplit(100); io.observe(stage); }
+    else setSplit(50);
+  })();
+
 })();
 </script>
 
