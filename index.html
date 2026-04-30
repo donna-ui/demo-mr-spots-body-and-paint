@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mr. Spot's Body & Paint — Pomona, since 1981</title>
-<meta name="description" content="Vintage VW restoration, classic-car bodywork, and custom paint in Pomona since 1981. The shop nobody leaves — our master painter has been in the booth for 28 years.">
+<meta name="description" content="Vintage VWs, hot rods, choppers, custom paint and collision since 1981. Mr. Spot's Body & Paint — don'tcha know.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mr. Spot's Body & Paint — The shop nobody leaves · Pomona since 1981">
+<meta property="og:title" content="Mr. Spot's Body & Paint — Don'tcha know · since 1981">
 <meta property="og:description" content="Vintage VW restoration, classic-car bodywork, and custom paint in Pomona, California.">
 <meta property="og:url" content="https://mr-spots-body-and-paint.vercel.app">
 
@@ -49,6 +49,8 @@
   --green: #4FB055;
   --green-bright: #62c668;
   --green-soft: #3a9442;
+  --yellow: #F4D02C;
+  --yellow-deep: #d4b41f;
   --ink: #0a0a0a;
   --ink-soft: #161616;
   --white: #ffffff;
@@ -169,34 +171,30 @@ img, svg { max-width: 100%; display: block; }
   pointer-events: none; /* brush works over text */
 }
 
-.hero-mark {
-  font-family: var(--f-old);
-  font-size: clamp(96px, 22vw, 320px);
-  line-height: 0.85;
-  letter-spacing: -0.005em;
-  color: var(--white);
-  font-weight: 400;
+.hero-logo {
+  width: clamp(280px, 56vw, 620px);
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 12px 32px rgba(10, 10, 10, 0.25));
 }
 
 .hero-drumbeat {
   font-family: var(--f-display);
   font-weight: 900;
-  font-size: clamp(28px, 4vw, 56px);
-  line-height: 1;
-  letter-spacing: -0.005em;
+  font-size: clamp(36px, 6.5vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
-  color: var(--ink);
-  margin-top: 24px;
-}
-
-.hero-meta {
-  font-family: var(--f-mono);
-  font-size: 12px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--ink);
+  color: var(--yellow);
   margin-top: 28px;
-  opacity: 0.75;
+  text-shadow:
+    -2px -2px 0 var(--ink),
+     2px -2px 0 var(--ink),
+    -2px  2px 0 var(--ink),
+     2px  2px 0 var(--ink),
+     0 8px 24px rgba(10, 10, 10, 0.35);
+  font-style: italic;
 }
 
 .brush-canvas {
@@ -756,9 +754,17 @@ img, svg { max-width: 100%; display: block; }
   .topbar-phone .label { display: none; }
   .topbar-phone .num { font-size: 14px; }
 
-  .hero-mark { font-size: clamp(72px, 26vw, 220px); }
-  .hero-drumbeat { font-size: clamp(22px, 6vw, 36px); margin-top: 16px; }
-  .hero-meta { font-size: 10px; }
+  .hero-logo { width: clamp(240px, 84vw, 460px); }
+  .hero-drumbeat {
+    font-size: clamp(28px, 9vw, 56px);
+    margin-top: 18px;
+    text-shadow:
+      -1.5px -1.5px 0 var(--ink),
+       1.5px -1.5px 0 var(--ink),
+      -1.5px  1.5px 0 var(--ink),
+       1.5px  1.5px 0 var(--ink),
+       0 6px 18px rgba(10, 10, 10, 0.35);
+  }
   .brush-prompt { font-size: 10px; bottom: 20px; }
 
   .parade-meta { padding: 22px 16px 8px; }
@@ -822,8 +828,8 @@ img, svg { max-width: 100%; display: block; }
      ============================================================ -->
 <header class="topbar">
   <div class="topbar-left">
-    <span class="topbar-mark">Mr&nbsp;Spots</span>
-    <span class="topbar-meta">Body &amp; Paint · Pomona · Est 1981</span>
+    <span class="topbar-mark">Mr&nbsp;Spot's</span>
+    <span class="topbar-meta">Body &amp; Paint · Est 1981 · Don'tcha know</span>
   </div>
   <a class="topbar-phone" href="tel:+19096200405">
     <span class="label">Call</span>
@@ -841,9 +847,8 @@ img, svg { max-width: 100%; display: block; }
        ============================================================ -->
   <section class="hero" id="hero">
     <div class="hero-content">
-      <h1 class="hero-mark">Mr&nbsp;Spots</h1>
-      <p class="hero-drumbeat">The shop nobody leaves.</p>
-      <p class="hero-meta">Body &amp; Paint · Pomona · since 1981</p>
+      <img class="hero-logo" src="assets/logo.avif" alt="Mr. Spot's Body & Paint" width="570" height="536" />
+      <p class="hero-drumbeat">Don'tcha know.</p>
     </div>
     <canvas class="brush-canvas" id="brushCanvas"></canvas>
     <p class="brush-prompt" id="brushPrompt">Brush this page</p>
@@ -855,34 +860,34 @@ img, svg { max-width: 100%; display: block; }
   <section class="parade" aria-label="Cars and services we restore">
     <div class="parade-meta">
       <span>The Parade</span>
-      <span>Forty-five years on East End</span>
+      <span>What rolls in &amp; rolls out</span>
     </div>
     <div class="parade-track" id="paradeTrack">
       <span class="parade-item">1956 VW Bug</span>
       <span class="parade-item is-tag">Custom paint</span>
+      <span class="parade-item">Choppers</span>
+      <span class="parade-item is-tag">Kustom flames</span>
       <span class="parade-item">1972 VW Bus</span>
       <span class="parade-item is-tag">Color-matched</span>
-      <span class="parade-item">1950 Mercury</span>
+      <span class="parade-item">Lead-sled Mercs</span>
       <span class="parade-item is-tag">Frame repair</span>
-      <span class="parade-item">1962 Notchback</span>
+      <span class="parade-item">Hot rods</span>
       <span class="parade-item is-tag">Collision</span>
-      <span class="parade-item">1955 Panel Van</span>
+      <span class="parade-item">1962 Notchback</span>
       <span class="parade-item is-tag">Insurance-approved</span>
-      <span class="parade-item">1971 Squareback</span>
-      <span class="parade-item is-tag">Vintage glass</span>
       <!-- duplicated for seamless loop -->
       <span class="parade-item">1956 VW Bug</span>
       <span class="parade-item is-tag">Custom paint</span>
+      <span class="parade-item">Choppers</span>
+      <span class="parade-item is-tag">Kustom flames</span>
       <span class="parade-item">1972 VW Bus</span>
       <span class="parade-item is-tag">Color-matched</span>
-      <span class="parade-item">1950 Mercury</span>
+      <span class="parade-item">Lead-sled Mercs</span>
       <span class="parade-item is-tag">Frame repair</span>
-      <span class="parade-item">1962 Notchback</span>
+      <span class="parade-item">Hot rods</span>
       <span class="parade-item is-tag">Collision</span>
-      <span class="parade-item">1955 Panel Van</span>
+      <span class="parade-item">1962 Notchback</span>
       <span class="parade-item is-tag">Insurance-approved</span>
-      <span class="parade-item">1971 Squareback</span>
-      <span class="parade-item is-tag">Vintage glass</span>
     </div>
   </section>
 
@@ -1048,7 +1053,7 @@ img, svg { max-width: 100%; display: block; }
 <footer class="foot">
   <div class="foot-inner">
     <span class="foot-mark">Mr&nbsp;Spots</span>
-    <span class="foot-meta">The shop nobody leaves · Pomona · since 1981</span>
+    <span class="foot-meta">Don'tcha know · since 1981</span>
     <span class="foot-meta">© Mr. Spot's Body &amp; Paint</span>
   </div>
 </footer>
