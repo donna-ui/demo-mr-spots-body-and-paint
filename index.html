@@ -311,8 +311,7 @@ img, svg { max-width: 100%; display: block; }
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.62;
+  color: var(--graphite-deep);
 }
 
 /* Rod / VW lede — the founder's specialty, transformation-framed */
@@ -326,8 +325,7 @@ img, svg { max-width: 100%; display: block; }
   font-size: 11px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.62;
+  color: var(--graphite-deep);
   margin-bottom: 20px;
 }
 
@@ -352,7 +350,7 @@ img, svg { max-width: 100%; display: block; }
   line-height: 1.1;
   letter-spacing: -0.005em;
   text-transform: none;
-  color: rgba(10,10,10,0.55);
+  color: var(--graphite-deep);
   margin-top: 14px;
 }
 
@@ -382,6 +380,7 @@ img, svg { max-width: 100%; display: block; }
   margin-bottom: 12px;
 }
 
+.rod-body-credentials strong,
 .rod-body-fit strong {
   color: var(--ink);
   font-weight: 700;
@@ -417,11 +416,11 @@ img, svg { max-width: 100%; display: block; }
 .drag-before {
   background:
     repeating-linear-gradient(135deg,
-      rgba(10, 10, 10, 0.04) 0 6px,
+      rgba(255, 255, 255, 0.06) 0 6px,
       transparent 6px 14px),
-    var(--paper);
-  color: rgba(10, 10, 10, 0.42);
-  filter: contrast(0.92) saturate(0.4);
+    var(--graphite);
+  color: rgba(255, 255, 255, 0.6);
+  filter: contrast(0.95) saturate(0.5);
 }
 
 .drag-before .num { display: block; }
@@ -431,7 +430,7 @@ img, svg { max-width: 100%; display: block; }
   width: 0.7em;
   height: 0.04em;
   margin: 0.06em auto 0;
-  background: rgba(10, 10, 10, 0.3);
+  background: rgba(255, 255, 255, 0.42);
 }
 
 .drag-after {
@@ -499,7 +498,7 @@ img, svg { max-width: 100%; display: block; }
 }
 
 .drag-caption .code { font-weight: 700; }
-.drag-caption .stages { opacity: 0.6; }
+.drag-caption .stages { color: var(--graphite-deep); }
 
 /* ============================================================
    ROSTER — the shop nobody leaves
@@ -520,8 +519,7 @@ img, svg { max-width: 100%; display: block; }
   font-size: 11px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.68;
+  color: var(--graphite-deep);
   text-align: center;
 }
 
@@ -541,8 +539,7 @@ img, svg { max-width: 100%; display: block; }
   text-align: center;
   font-family: var(--f-body);
   font-size: 17px;
-  color: var(--ink);
-  opacity: 0.72;
+  color: var(--graphite-deep);
   margin-bottom: 56px;
   max-width: 44ch;
   margin-left: auto;
@@ -586,8 +583,7 @@ img, svg { max-width: 100%; display: block; }
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.62;
+  color: var(--graphite-deep);
   margin-top: 8px;
   display: block;
 }
@@ -607,12 +603,12 @@ img, svg { max-width: 100%; display: block; }
 .roster-tenure.t-xl { font-size: clamp(48px, 8vw, 96px); }
 .roster-tenure.t-lg { font-size: clamp(28px, 4.4vw, 52px); }
 .roster-tenure.t-md { font-size: clamp(22px, 3.4vw, 38px); }
-.roster-tenure.t-sm { font-size: clamp(18px, 2.6vw, 28px); color: rgba(10,10,10,0.55); }
+.roster-tenure.t-sm { font-size: clamp(18px, 2.6vw, 28px); color: var(--graphite-deep); }
 .roster-tenure.t-em {
   font-family: var(--f-mono);
   font-weight: 400;
   font-size: 12px;
-  color: rgba(10,10,10,0.42);
+  color: var(--graphite);
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
@@ -943,8 +939,9 @@ img, svg { max-width: 100%; display: block; }
       <div class="rod-body">
         <div class="rod-body-credentials">
           <span class="pull">How Rod got here</span>
-          <p>He started at nine — helping his father chop 1950 Mercurys. His first solo project was a 1956 oval-window VW Bug.</p>
-          <p>Forty-seven years later, vintage VWs are still the cars he reaches for first. The shop opened in '81, on East End Ave, where it's been ever since.</p>
+          <p><strong>Age nine.</strong> Chopping 1950 Mercurys with his father.</p>
+          <p><strong>First solo build:</strong> a 1956 oval-window VW Bug.</p>
+          <p><strong>Same shop, same East End address since '81.</strong> Forty-seven years in.</p>
         </div>
         <div class="rod-body-fit">
           <span class="pull">What we take in</span>
