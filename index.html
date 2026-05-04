@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mr. Spot's Body & Paint — Pomona, since 1981</title>
-<meta name="description" content="Vintage VWs, hot rods, choppers, custom paint and collision since 1981. Mr. Spot's Body & Paint — don'tcha know.">
+<meta name="description" content="Vintage VW restoration in Pomona since 1981. Rod started at 9 — his first car was a '56 oval-window Bug. Frame-off restorations, factory-code color matching, plus everyday collision and insurance work.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mr. Spot's Body & Paint — Don'tcha know · since 1981">
-<meta property="og:description" content="Vintage VW restoration, classic-car bodywork, and custom paint in Pomona, California.">
+<meta property="og:title" content="Mr. Spot's Body & Paint — Pomona's vintage VW shop, since 1981">
+<meta property="og:description" content="Rod's been restoring vintage Volkswagens since age 9. Frame-off restorations, factory-code paint matching, plus everyday collision repair. Pomona, CA.">
 <meta property="og:url" content="https://mr-spots-body-and-paint.vercel.app">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Big+Shoulders+Display:wght@400;700;900&family=Archivo:wght@400;500;700;900&family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Archivo:wght@400;500;700;900&family=Special+Elite&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -49,8 +49,9 @@
   --green: #4FB055;
   --green-bright: #62c668;
   --green-soft: #3a9442;
-  --yellow: #F4D02C;
-  --yellow-deep: #d4b41f;
+  --graphite: #8c8a82;
+  --graphite-deep: #6a6862;
+  --graphite-light: #b5b3aa;
   --ink: #0a0a0a;
   --ink-soft: #161616;
   --white: #ffffff;
@@ -58,7 +59,6 @@
   --rule-light: rgba(255, 255, 255, 0.18);
   --rule-dark: rgba(10, 10, 10, 0.16);
 
-  --f-old: "Pirata One", "UnifrakturCook", serif;
   --f-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
   --f-body: "Archivo", -apple-system, sans-serif;
   --f-mono: "Special Elite", "Courier New", monospace;
@@ -108,15 +108,14 @@ img, svg { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 14px;
+  text-decoration: none;
+  color: inherit;
 }
 
-.topbar-mark {
-  font-family: var(--f-old);
-  font-size: 22px;
-  color: var(--white);
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
+.topbar-logo {
+  height: 30px;
+  width: auto;
+  display: block;
 }
 
 .topbar-meta { opacity: 0.55; letter-spacing: 0.2em; }
@@ -149,106 +148,77 @@ img, svg { max-width: 100%; display: block; }
 }
 
 /* ============================================================
-   HERO — THE BRUSH
+   HERO — VW WATERMARK ON GRAPHITE
    ============================================================ */
 .hero {
   position: relative;
   min-height: calc(100vh - 44px);
-  background: var(--green);
+  background: var(--graphite);
   color: var(--white);
   overflow: hidden;
   display: grid;
   place-items: center;
-  cursor: none; /* hide cursor over hero — brush is the cursor */
   isolation: isolate;
+}
+
+.hero::after {
+  /* gentle vignette to settle the watermark */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(10, 10, 10, 0.22) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vw-roundel {
+  position: absolute;
+  top: 50%;
+  left: 56%;
+  transform: translate(-50%, -50%);
+  width: min(95vh, 130vw);
+  height: min(95vh, 130vw);
+  color: var(--white);
+  opacity: 0.085;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   padding: 0 24px;
-  pointer-events: none; /* brush works over text */
 }
 
 .hero-logo {
-  width: clamp(280px, 56vw, 620px);
+  width: clamp(260px, 46vw, 480px);
   height: auto;
   margin: 0 auto;
   display: block;
-  filter: drop-shadow(0 12px 32px rgba(10, 10, 10, 0.25));
+  filter: drop-shadow(0 18px 44px rgba(0, 0, 0, 0.32));
 }
 
-.hero-drumbeat {
-  font-family: var(--f-display);
-  font-weight: 900;
-  font-size: clamp(36px, 6.5vw, 96px);
-  line-height: 0.95;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  color: var(--yellow);
-  margin-top: 28px;
-  text-shadow:
-    -2px -2px 0 var(--ink),
-     2px -2px 0 var(--ink),
-    -2px  2px 0 var(--ink),
-     2px  2px 0 var(--ink),
-     0 8px 24px rgba(10, 10, 10, 0.35);
-  font-style: italic;
-}
-
-.brush-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  display: block;
-  cursor: none;
-  touch-action: none;
-}
-
-.brush-prompt {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
+.hero-meta {
+  margin-top: 32px;
   font-family: var(--f-mono);
   font-size: 12px;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--white);
-  opacity: 0.85;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  white-space: nowrap;
+  opacity: 0.72;
 }
 
-.brush-prompt::before {
-  content: "—";
-  margin-right: 10px;
-  opacity: 0.6;
-}
-
-.brush-prompt.is-faded { opacity: 0; }
-
-/* the painted-cursor dot */
-.brush-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 24px; height: 24px;
-  border: 1.5px solid var(--white);
+.hero-meta .dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--green);
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 200;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-  display: none;
-  transition: width 0.15s, height 0.15s;
+  vertical-align: 2px;
+  margin: 0 12px;
+  box-shadow: 0 0 8px rgba(79, 176, 85, 0.7);
 }
-
-.brush-cursor.is-active { display: block; }
 
 /* ============================================================
    MARQUEE — THE PARADE
@@ -292,7 +262,7 @@ img, svg { max-width: 100%; display: block; }
   font-size: clamp(64px, 11vw, 168px);
   line-height: 1;
   letter-spacing: -0.01em;
-  color: var(--green);
+  color: var(--white);
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
@@ -301,16 +271,17 @@ img, svg { max-width: 100%; display: block; }
 
 .parade-item::after {
   content: "·";
-  color: var(--white);
-  opacity: 0.4;
+  color: var(--green);
+  opacity: 0.85;
   font-weight: 400;
+  text-shadow: 0 0 12px rgba(79, 176, 85, 0.5);
 }
 
 .parade-item.is-tag {
   font-family: var(--f-mono);
   font-weight: 400;
   font-size: clamp(24px, 4vw, 56px);
-  color: var(--white);
+  color: var(--graphite-light);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -343,6 +314,80 @@ img, svg { max-width: 100%; display: block; }
   color: var(--ink);
   opacity: 0.62;
 }
+
+/* Rod / VW lede — the founder's specialty, transformation-framed */
+.rod-lede {
+  max-width: 1100px;
+  margin: 0 auto 72px;
+}
+
+.rod-lede-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.62;
+  margin-bottom: 20px;
+}
+
+.rod-headline {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(38px, 6.4vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.018em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.rod-headline .accent { color: var(--green-soft); }
+
+.rod-headline-soft {
+  display: block;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: rgba(10,10,10,0.55);
+  margin-top: 14px;
+}
+
+.rod-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(10,10,10,0.16);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.rod-body p { margin-bottom: 12px; }
+.rod-body p:last-child { margin-bottom: 0; }
+
+.rod-body-credentials .pull {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green-soft);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.rod-body-fit strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.rod-body-fit .green-strong { color: var(--green-soft); font-weight: 700; }
 
 .drag-stage {
   max-width: 1280px;
@@ -728,11 +773,11 @@ img, svg { max-width: 100%; display: block; }
   gap: 16px;
 }
 
-.foot-mark {
-  font-family: var(--f-old);
-  font-size: 28px;
-  color: var(--white);
-  line-height: 1;
+.foot-logo {
+  height: 36px;
+  width: auto;
+  display: block;
+  opacity: 0.85;
 }
 
 .foot-meta {
@@ -750,22 +795,17 @@ img, svg { max-width: 100%; display: block; }
   body { padding-top: 40px; }
   .topbar { height: 40px; padding: 0 16px; font-size: 10px; }
   .topbar-meta { display: none; }
-  .topbar-mark { font-size: 18px; }
+  .topbar-logo { height: 24px; }
   .topbar-phone .label { display: none; }
   .topbar-phone .num { font-size: 14px; }
 
-  .hero-logo { width: clamp(240px, 84vw, 460px); }
-  .hero-drumbeat {
-    font-size: clamp(28px, 9vw, 56px);
-    margin-top: 18px;
-    text-shadow:
-      -1.5px -1.5px 0 var(--ink),
-       1.5px -1.5px 0 var(--ink),
-      -1.5px  1.5px 0 var(--ink),
-       1.5px  1.5px 0 var(--ink),
-       0 6px 18px rgba(10, 10, 10, 0.35);
+  .hero-logo { width: clamp(220px, 70vw, 380px); }
+  .hero-meta {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    margin-top: 22px;
   }
-  .brush-prompt { font-size: 10px; bottom: 20px; }
+  .vw-roundel { left: 50%; opacity: 0.10; }
 
   .parade-meta { padding: 22px 16px 8px; }
   .parade-track { gap: 36px; padding: 22px 0 30px; }
@@ -776,6 +816,12 @@ img, svg { max-width: 100%; display: block; }
   .drag-stage { height: clamp(220px, 56vw, 360px); }
   .drag-handle::before { width: 44px; height: 44px; }
   .drag-caption { padding: 0 4px; flex-direction: column; gap: 8px; font-size: 11px; }
+
+  .rod-lede { margin-bottom: 44px; padding: 0 4px; }
+  .rod-lede-eyebrow { font-size: 10px; letter-spacing: 0.32em; margin-bottom: 14px; }
+  .rod-headline { font-size: clamp(30px, 9vw, 56px); }
+  .rod-headline-soft { font-size: clamp(16px, 4.6vw, 22px); margin-top: 10px; }
+  .rod-body { grid-template-columns: 1fr; gap: 18px; margin-top: 28px; padding-top: 20px; font-size: 15px; }
 
   .roster { padding: 70px 16px 90px; }
   .roster-list { border-top-width: 1px; }
@@ -808,15 +854,6 @@ img, svg { max-width: 100%; display: block; }
   }
   .parade-track { animation: none; transform: translateX(0); flex-wrap: wrap; gap: 24px; padding: 24px 16px; width: auto; }
   .topbar-phone .num, .visit-call-num { text-shadow: 0 0 8px rgba(79, 176, 85, 0.4); }
-  .hero { cursor: default; }
-  .brush-canvas { display: none; }
-  .brush-prompt { display: none; }
-  .brush-cursor { display: none !important; }
-}
-
-@media (hover: none) {
-  .hero { cursor: default; }
-  .brush-cursor { display: none !important; }
 }
 </style>
 </head>
@@ -827,30 +864,31 @@ img, svg { max-width: 100%; display: block; }
      FIXED TOP BAR
      ============================================================ -->
 <header class="topbar">
-  <div class="topbar-left">
-    <span class="topbar-mark">Mr&nbsp;Spot's</span>
-    <span class="topbar-meta">Body &amp; Paint · Est 1981 · Don'tcha know</span>
-  </div>
+  <a class="topbar-left" href="#hero" aria-label="Mr. Spot's Body & Paint, home">
+    <img class="topbar-logo" src="assets/logo.avif" alt="" />
+    <span class="topbar-meta">Pomona · Est 1981</span>
+  </a>
   <a class="topbar-phone" href="tel:+19096200405">
     <span class="label">Call</span>
     <span class="num">(909) 620-0405</span>
   </a>
 </header>
 
-<!-- the painted brush cursor -->
-<div class="brush-cursor" id="brushCursor"></div>
-
 <main>
 
   <!-- ============================================================
-       HERO — THE BRUSH
+       HERO — VW WATERMARK ON GRAPHITE
        ============================================================ -->
   <section class="hero" id="hero">
+    <svg class="vw-roundel" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="100" cy="100" r="93" stroke-width="5"/>
+      <path d="M 50 38 L 100 108 L 150 38" stroke-width="11"/>
+      <path d="M 32 78 L 65 168 L 100 108 L 135 168 L 168 78" stroke-width="11"/>
+    </svg>
     <div class="hero-content">
       <img class="hero-logo" src="assets/logo.avif" alt="Mr. Spot's Body & Paint · Don'tcha Know" width="570" height="536" />
+      <p class="hero-meta">VW Restoration <span class="dot"></span> Pomona <span class="dot"></span> Since 1981</p>
     </div>
-    <canvas class="brush-canvas" id="brushCanvas"></canvas>
-    <p class="brush-prompt" id="brushPrompt">Brush this page</p>
   </section>
 
   <!-- ============================================================
@@ -891,12 +929,35 @@ img, svg { max-width: 100%; display: block; }
   </section>
 
   <!-- ============================================================
-       DRAG — BEFORE / AFTER
+       DRAG — ROD'S SPECIALTY + BEFORE/AFTER
        ============================================================ -->
-  <section class="drag" id="drag" aria-label="Before and after — drag to wipe">
+  <section class="drag" id="drag" aria-label="Rod's specialty and before/after wipe">
+
+    <div class="rod-lede">
+      <p class="rod-lede-eyebrow">Rod · 47 years · vintage VW + classic restoration</p>
+      <h2 class="rod-headline">
+        Your <span class="accent">'56 Bug</span> looks like '56 again.
+        <span class="rod-headline-soft">Or your '72 Bus. Or whatever's been sitting under the tarp.</span>
+      </h2>
+
+      <div class="rod-body">
+        <div class="rod-body-credentials">
+          <span class="pull">How Rod got here</span>
+          <p>He started at nine — helping his father chop 1950 Mercurys. His first solo project was a 1956 oval-window VW Bug.</p>
+          <p>Forty-seven years later, vintage VWs are still the cars he reaches for first. The shop opened in '81, on East End Ave, where it's been ever since.</p>
+        </div>
+        <div class="rod-body-fit">
+          <span class="pull">What we take in</span>
+          <p><strong>Daily-driver fender bender?</strong> Yes — insurance-approved, frame straightened, paint blended.</p>
+          <p><span class="green-strong">Vintage Bug, Bus, or lead-sled under a tarp?</span> Frame-off, factory-code color match, no shortcuts.</p>
+          <p>Two different jobs. Same shop. Different hands.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="drag-eyebrow">
       <span>Drag to wipe</span>
-      <span>Bahama Pastel · 1972</span>
+      <span>Bahama Pastel · Tanner's '72 Bus</span>
     </div>
     <div class="drag-stage" id="dragStage" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
       <div class="drag-layer drag-before" aria-hidden="true">
@@ -1050,7 +1111,7 @@ img, svg { max-width: 100%; display: block; }
      ============================================================ -->
 <footer class="foot">
   <div class="foot-inner">
-    <span class="foot-mark">Mr&nbsp;Spots</span>
+    <img class="foot-logo" src="assets/logo.avif" alt="Mr. Spot's Body & Paint" />
     <span class="foot-meta">Don'tcha know · since 1981</span>
     <span class="foot-meta">© Mr. Spot's Body &amp; Paint</span>
   </div>
@@ -1059,123 +1120,6 @@ img, svg { max-width: 100%; display: block; }
 <script>
 (function () {
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hasHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
-
-  /* ============================================================
-     THE BRUSH — canvas wipe revealing the green hero underneath
-     ============================================================ */
-  (function () {
-    var canvas = document.getElementById('brushCanvas');
-    var prompt = document.getElementById('brushPrompt');
-    var cursor = document.getElementById('brushCursor');
-    var hero = document.getElementById('hero');
-    if (!canvas || !hero) return;
-
-    if (prefersReduced) {
-      canvas.style.display = 'none';
-      if (prompt) prompt.style.display = 'none';
-      return;
-    }
-
-    var ctx = canvas.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var w = 0, h = 0;
-    var firstStroke = false;
-    var lastMove = Date.now();
-    var faded = false;
-
-    function resize() {
-      var rect = hero.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      // fill with solid black undercoat
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = '#0a0a0a';
-      ctx.fillRect(0, 0, w, h);
-    }
-
-    function paintAt(x, y) {
-      ctx.globalCompositeOperation = 'destination-out';
-      var r = 70;
-      var grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-      grad.addColorStop(0,   'rgba(0,0,0,1)');
-      grad.addColorStop(0.6, 'rgba(0,0,0,0.85)');
-      grad.addColorStop(1,   'rgba(0,0,0,0)');
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function fadeOut() {
-      if (faded) return;
-      faded = true;
-      canvas.style.transition = 'opacity 900ms ease';
-      canvas.style.opacity = '0';
-      if (cursor) cursor.classList.remove('is-active');
-      hero.style.cursor = 'default';
-    }
-
-    function onMove(e) {
-      var rect = canvas.getBoundingClientRect();
-      var pt = e.touches ? e.touches[0] : e;
-      var x = pt.clientX - rect.left;
-      var y = pt.clientY - rect.top;
-      paintAt(x, y);
-      // also paint a smoothing point if we have a previous position
-      lastMove = Date.now();
-      if (!firstStroke) {
-        firstStroke = true;
-        if (prompt) prompt.classList.add('is-faded');
-      }
-      if (cursor && hasHover) {
-        cursor.classList.add('is-active');
-        cursor.style.transform = 'translate(' + (pt.clientX) + 'px, ' + (pt.clientY) + 'px) translate(-50%, -50%)';
-      }
-    }
-
-    function onLeave() {
-      if (cursor) cursor.classList.remove('is-active');
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-    canvas.addEventListener('mousemove', onMove);
-    canvas.addEventListener('touchmove', function (e) { e.preventDefault(); onMove(e); }, { passive: false });
-    canvas.addEventListener('mouseleave', onLeave);
-    canvas.addEventListener('touchend', onLeave);
-
-    // auto-finish after 3s of inactivity following first stroke,
-    // or after 8s total if user never touches
-    setInterval(function () {
-      if (faded) return;
-      var now = Date.now();
-      if (firstStroke && now - lastMove > 2200) fadeOut();
-      else if (!firstStroke && now - lastMove > 7500) fadeOut();
-    }, 400);
-
-    // also fade once enough has been wiped
-    setInterval(function () {
-      if (faded || !firstStroke) return;
-      // sample the alpha across a small grid
-      try {
-        var sample = ctx.getImageData(0, 0, w * dpr, h * dpr);
-        var len = sample.data.length;
-        var step = Math.max(4 * 1000, Math.floor(len / 1200) * 4); // ~1200 sample points
-        var clear = 0, total = 0;
-        for (var i = 3; i < len; i += step) {
-          total++;
-          if (sample.data[i] < 30) clear++;
-        }
-        if (total && clear / total > 0.55) fadeOut();
-      } catch (err) { /* ignore — cross-origin etc. */ }
-    }, 700);
-  })();
 
   /* ============================================================
      DRAG — BEFORE/AFTER slider
@@ -1187,6 +1131,7 @@ img, svg { max-width: 100%; display: block; }
     if (!stage || !after || !handle) return;
 
     var dragging = false;
+    var startX = 0, startY = 0, intent = null;
 
     function setSplit(pct) {
       pct = Math.max(0, Math.min(100, pct));
@@ -1201,9 +1146,34 @@ img, svg { max-width: 100%; display: block; }
       return (x / rect.width) * 100;
     }
 
-    function start(e) { dragging = true; setSplit(fromEvent(e)); }
-    function move(e) { if (dragging) { setSplit(fromEvent(e)); e.preventDefault && e.preventDefault(); } }
-    function end() { dragging = false; }
+    function start(e) {
+      var pt = e.touches ? e.touches[0] : e;
+      startX = pt.clientX;
+      startY = pt.clientY;
+      if (e.touches) {
+        intent = null; // wait to see if user means horizontal
+        dragging = false;
+      } else {
+        intent = 'h';
+        dragging = true;
+        setSplit(fromEvent(e));
+      }
+    }
+    function move(e) {
+      if (e.touches && intent === null) {
+        var pt = e.touches[0];
+        var dx = Math.abs(pt.clientX - startX);
+        var dy = Math.abs(pt.clientY - startY);
+        if (dx + dy < 8) return;
+        intent = dx > dy ? 'h' : 'v';
+        if (intent === 'h') dragging = true;
+      }
+      if (dragging) {
+        setSplit(fromEvent(e));
+        if (e.cancelable) e.preventDefault();
+      }
+    }
+    function end() { dragging = false; intent = null; }
 
     stage.addEventListener('mousedown', start);
     window.addEventListener('mousemove', move);
