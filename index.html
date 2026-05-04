@@ -837,13 +837,40 @@ img, svg { max-width: 100%; display: block; }
   }
   .vw-roundel { left: 50%; opacity: 0.10; }
 
-  .work { padding: 36px 16px 50px; }
-  .work-meta { margin-bottom: 22px; font-size: 10px; letter-spacing: 0.28em; }
-  .work-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .work-feature { grid-column: span 2; }
-  .work-feature img { aspect-ratio: 4/3; object-position: center 30%; }
-  .work-half, .work-third { grid-column: span 1; }
-  .work-grid figcaption { font-size: 9px; letter-spacing: 0.24em; margin-top: 10px; }
+  .work { padding: 50px 22px 64px; }
+  .work-meta {
+    margin-bottom: 32px;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+  }
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  .work-feature,
+  .work-half,
+  .work-third { grid-column: span 1; }
+  .work-feature img,
+  .work-half img,
+  .work-third img {
+    aspect-ratio: 4/3;
+    object-position: center 35%;
+  }
+  .work-grid figcaption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+  }
+  .work-grid figcaption .tag {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    opacity: 0.78;
+  }
 
   .drag { padding: 60px 16px 80px; }
   .drag-eyebrow { padding: 0 4px; flex-direction: column; gap: 4px; }
