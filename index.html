@@ -557,15 +557,40 @@ img, svg { max-width: 100%; display: block; }
 
 .roster-row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 64px 1fr auto;
   align-items: center;
-  gap: 32px;
-  padding: 22px 4px;
+  gap: 24px;
+  padding: 18px 4px;
   border-bottom: 1px solid rgba(10,10,10,0.16);
   transition: background 0.4s;
 }
 
 .roster-row:hover { background: rgba(79, 176, 85, 0.06); }
+
+.roster-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 3px;
+  object-fit: cover;
+  display: block;
+  background: var(--graphite-deep);
+  filter: contrast(1.02) saturate(0.92);
+  outline: 1px solid rgba(10, 10, 10, 0.18);
+  outline-offset: -1px;
+}
+
+.roster-photo.is-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  text-transform: uppercase;
+  filter: none;
+}
 
 .roster-name {
   font-family: var(--f-display);
@@ -822,13 +847,16 @@ img, svg { max-width: 100%; display: block; }
   .roster { padding: 70px 16px 90px; }
   .roster-list { border-top-width: 1px; }
   .roster-row {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 18px 0;
+    grid-template-columns: 48px 1fr auto;
+    gap: 14px;
+    padding: 14px 0;
+    align-items: center;
   }
-  .roster-tenure { text-align: left; }
-  .roster-tenure.t-xl { font-size: clamp(40px, 12vw, 64px); }
-  .roster-tenure.t-em { font-size: 11px; }
+  .roster-photo { width: 48px; height: 48px; }
+  .roster-photo.is-placeholder { font-size: 16px; }
+  .roster-tenure { text-align: right; align-self: center; }
+  .roster-tenure.t-xl { font-size: clamp(28px, 7vw, 44px); }
+  .roster-tenure.t-em { font-size: 10px; }
   .roster-tagline { font-size: 15px; margin-bottom: 36px; }
 
   .visit { padding: 70px 16px 70px; }
@@ -982,6 +1010,7 @@ img, svg { max-width: 100%; display: block; }
 
       <div class="roster-list">
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/rod.avif" alt="Rod" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Rod</span>
             <span class="roster-role">Owner · founded the shop</span>
@@ -990,6 +1019,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <span class="roster-photo is-placeholder" aria-hidden="true">J</span>
           <div>
             <span class="roster-name">Jeff</span>
             <span class="roster-role">Master Painter</span>
@@ -998,6 +1028,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/jose.avif" alt="Jose" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Jose</span>
             <span class="roster-role">Lead Detail · Prep</span>
@@ -1006,6 +1037,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/angel.avif" alt="Angel" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Angel</span>
             <span class="roster-role">Lead Prep · Auto Body</span>
@@ -1014,6 +1046,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/mario.avif" alt="Mario" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Mario</span>
             <span class="roster-role">Lead Metal Fab · Auto Body</span>
@@ -1022,6 +1055,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/alias.avif" alt="Alias" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Alias</span>
             <span class="roster-role">Lead Metal Fab · Auto Body</span>
@@ -1030,6 +1064,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <span class="roster-photo is-placeholder" aria-hidden="true">P</span>
           <div>
             <span class="roster-name">Pedro</span>
             <span class="roster-role">Lead Detail</span>
@@ -1038,6 +1073,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <span class="roster-photo is-placeholder" aria-hidden="true">K</span>
           <div>
             <span class="roster-name">Karess</span>
             <span class="roster-role">Manager · Rod's daughter</span>
@@ -1046,6 +1082,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/tanner.avif" alt="Tanner" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Tanner</span>
             <span class="roster-role">Junior Body Specialist · Rod's son · 16</span>
@@ -1054,6 +1091,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <img class="roster-photo" src="assets/team/gonzo.avif" alt="Gonzo" loading="lazy" width="688" height="688" />
           <div>
             <span class="roster-name">Gonzo</span>
             <span class="roster-role">Metal Fab · Auto Body</span>
@@ -1062,6 +1100,7 @@ img, svg { max-width: 100%; display: block; }
         </div>
 
         <div class="roster-row">
+          <span class="roster-photo is-placeholder" aria-hidden="true">E</span>
           <div>
             <span class="roster-name">Eddy</span>
             <span class="roster-role">Lead Prep · Painter</span>
